@@ -1,0 +1,17 @@
+Feature
+ChargerID
+ChargerCompany
+Location
+ChargerType
+Hour
+DayOfWeek
+DayOfMonth
+WeekOfYear
+Month
+Year
+IsWeekend
+PreviousChargerDemand
+PreviousLocationDemand
+HistoricalChargerMean
+HistoricalLocationMean
+ChargerHourHistoricalMean
