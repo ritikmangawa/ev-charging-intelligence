@@ -119,13 +119,15 @@ if page == "Demand Prediction":
             selected_charger = st.selectbox("Charger ID", charger_ids)
             
             charger_companies = sorted(app_options['ChargerCompany'].unique())
-            selected_company = st.selectbox("Charger Company", charger_companies)
+            company_names = {0: "0 (Network A)", 1: "1 (Network B)"}
+            selected_company = st.selectbox("Charger Company", charger_companies, format_func=lambda x: company_names.get(x, str(x)))
             
             locations = sorted(app_options['Location'].unique())
             selected_location = st.selectbox("Location", locations)
             
             charger_types = sorted(app_options['ChargerType'].unique())
-            selected_type = st.selectbox("Charger Type", charger_types)
+            type_names = {0: "0 (AC Level 2)", 1: "1 (DC Fast Charging)"}
+            selected_type = st.selectbox("Charger Type", charger_types, format_func=lambda x: type_names.get(x, str(x)))
             
         with col2:
             st.markdown("##### Session Timing")
