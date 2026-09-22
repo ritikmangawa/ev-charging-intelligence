@@ -197,7 +197,7 @@ elif page == "Station Utilization Intelligence":
     col1, col2, col3, col4 = st.columns(4)
     total_demand = charger_util['TotalDemand'].sum() if 'TotalDemand' in charger_util.columns else 0
     avg_demand = charger_util['AverageDemand'].mean() if 'AverageDemand' in charger_util.columns else 0
-    total_sessions = charger_util['TotalSessions'].sum() if 'TotalSessions' in charger_util.columns else 0
+    total_sessions = charger_util['SessionCount'].sum() if 'SessionCount' in charger_util.columns else 0
     
     with col1:
         st.metric("Total Recorded Demand (kWh)", f"{total_demand:,.0f}")
@@ -231,12 +231,12 @@ elif page == "Station Utilization Intelligence":
             
     with col_chart2:
         st.subheader("🏢 Location Activity (Top 5)")
-        if 'Location' in location_util.columns and 'TotalSessions' in location_util.columns:
-            top_locs = location_util.sort_values('TotalSessions', ascending=False).head(5)
+        if 'Location' in location_util.columns and 'SessionCount' in location_util.columns:
+            top_locs = location_util.sort_values('SessionCount', ascending=False).head(5)
             fig, ax = plt.subplots(figsize=(10, 5))
             fig.patch.set_facecolor('#1e222b')
             ax.set_facecolor('#1e222b')
-            bars = ax.bar(top_locs['Location'], top_locs['TotalSessions'], color='#00C9FF')
+            bars = ax.bar(top_locs['Location'], top_locs['SessionCount'], color='#00C9FF')
             ax.set_xlabel("Location Type", color='#e0e0e0')
             ax.set_ylabel("Total Sessions", color='#e0e0e0')
             ax.tick_params(colors='#e0e0e0')
@@ -252,7 +252,7 @@ elif page == "Station Utilization Intelligence":
     if 'ChargerID' in charger_util.columns and 'TotalDemand' in charger_util.columns:
         top_chargers = charger_util.sort_values('TotalDemand', ascending=False).head(10)
         # Beautify dataframe
-        st.dataframe(top_locs if False else top_chargers.style.background_gradient(cmap='viridis', subset=['TotalDemand', 'TotalSessions']), use_container_width=True)
+        st.dataframe(top_locs if False else top_chargers.style.background_gradient(cmap='viridis', subset=['TotalDemand', 'SessionCount']), use_container_width=True)
 
 elif page == "Model Performance":
     st.title("🎯 Model Performance & Intelligence")
