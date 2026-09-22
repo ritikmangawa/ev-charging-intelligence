@@ -1,5 +1,7 @@
 # EV Charging Demand Prediction & Station Utilization Intelligence
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ev-charging-intelligence-epscttvqdf9tis6pq9t3mv.streamlit.app/)
+
 An end-to-end Machine Learning system for EV charging infrastructure, featuring demand prediction and utilization analytics.
 
 ## 🚀 Project Overview
