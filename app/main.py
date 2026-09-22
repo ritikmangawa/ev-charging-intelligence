@@ -118,12 +118,14 @@ if page == "Demand Prediction":
             charger_ids = sorted(app_options['ChargerID'].unique())
             selected_charger = st.selectbox("Charger ID", charger_ids)
             
-            # Filter options based on selected charger
-            charger_data = app_options[app_options['ChargerID'] == selected_charger].iloc[0]
+            charger_companies = sorted(app_options['ChargerCompany'].unique())
+            selected_company = st.selectbox("Charger Company", charger_companies)
             
-            selected_company = st.text_input("Charger Company", value=str(charger_data['ChargerCompany']), disabled=True)
-            selected_location = st.text_input("Location", value=str(charger_data['Location']), disabled=True)
-            selected_type = st.text_input("Charger Type", value=str(charger_data['ChargerType']), disabled=True)
+            locations = sorted(app_options['Location'].unique())
+            selected_location = st.selectbox("Location", locations)
+            
+            charger_types = sorted(app_options['ChargerType'].unique())
+            selected_type = st.selectbox("Charger Type", charger_types)
             
         with col2:
             st.markdown("##### Session Timing")
@@ -135,9 +137,9 @@ if page == "Demand Prediction":
     if submit:
         # Extract base values
         c_id = int(selected_charger)
-        c_comp = int(charger_data['ChargerCompany'])
-        c_loc = charger_data['Location']
-        c_type = int(charger_data['ChargerType'])
+        c_comp = int(selected_company)
+        c_loc = selected_location
+        c_type = int(selected_type)
         
         # Temporal features
         dt_val = datetime.datetime.combine(selected_date, selected_time)
